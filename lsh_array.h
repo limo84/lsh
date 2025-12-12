@@ -40,9 +40,20 @@ i8 array_init(Array *a, u16 el_size, u32 cap, u32 inc) {
   return 0;
 }
 
-void array_free(Array *a) {
-  free(a->data);
-  a->data = NULL;
+void array_free(Array a) {
+  free(a.data);
+  a.data = NULL;
+}
+
+void array_fill(Array *a, u32 length, void *data) {
+  a->data = malloc(a->cap * a->el_size); 
+  a->length = length;
+  // check increase
+  if (a->length > a->cap) {
+    for (; a->length > a->cap; a->cap += a->inc);
+    a->data = realloc(a->data, a->cap * a->el_size);
+  }
+  memcpy(a->data, data, a->length * a->el_size);
 }
 
 void array_add(Array *a, u32 length, void *data) { 
@@ -55,48 +66,12 @@ void array_add(Array *a, u32 length, void *data) {
     for (; a->length > a->cap; a->cap += a->inc);
     a->data = realloc(a->data, a->cap * a->el_size);
   }
-  memcpy((u8*)a->data + len_old * a->el_size, data, length * a->el_size);
+  memcpy(a->data + len_old * a->el_size, data, a->length * a->el_size);
 }
 
 void* array_get(Array *a, u32 idx) {
   return a->data + idx * a->el_size;
 }
 
-#endif
-
-
-// ---------------------------------------------------------
-
-#ifdef LSH_TEST
-
-typedef struct {
-  u8 age;
-  char name[10];
-} Person;
-
-int main() {
-  Person people[2] = {{27, "Julia"}, {41, "Lukas"}};
-  printf("sizeof Person: %d\n", sizeof(Person));
-  for (int i = 0; i < 2; i++) {
-    printf("%s is %d years old.\n", people[i].name, people[i].age);
-  }
-  Array people_array = {sizeof(Person), 10, 5};
-  array_fill(&people_array, 2, &people);
-  
-  for (int i = 0; i < 2; i++) {
-    //Person *p = (Person*) (people_array.data + i);
-    Person *p = (Person*) array_get(&people_array, i);
-    printf("%s is %d years old.\n", p->name, p->age);
-  }
-  //Person p = {31, "Gregor"};
-  //array_add(&people_array, 1, &p);
-  array_add_one(people_array, Person, {32, "Gregor"});
-  for (int i = 0; i < people_array.length; i++) {
-    //Person *p = (Person*) (people_array.data + i);
-    Person *p = (Person*) array_get(&people_array, i);
-    printf("%s is %d years old.\n", p->name, p->age);
-  }
-}
-
-#endif
+#endif // LSH
 #endif

@@ -12,7 +12,7 @@ static char *filename = NULL;
 void logger_set_filename(const char *file_name);
 void logger_log(const char *format, ...);
 
-#ifdef lsh_logger_imp
+#ifdef LSH
 
 void logger_set_filename(const char *file_name) {
   if (filename)
