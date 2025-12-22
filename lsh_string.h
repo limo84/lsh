@@ -19,7 +19,7 @@ void string_print(String *s);
 
 //-------------------------------------------------
 
-#ifdef lsh_string_imp
+#ifdef LSH
 
 void string_init(String *string, char *initial) {
   string->buf = NULL;
