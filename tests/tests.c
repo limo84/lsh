@@ -1,13 +1,8 @@
-//#define lsh_string_imp
-//#define lsh_logger_imp
-//#define lsh_regex_imp
 #define LSH
 
 #include "../lsh_string.h"
 #include "../lsh_logger.h"
 #include "../lsh_regex.h"
-
-//#include "logger_tests.c"
 
 int main() {
   String *s;
