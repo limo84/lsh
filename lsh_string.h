@@ -42,5 +42,5 @@ void string_print(String *s) {
   }
 }
 
-#endif // lsh_string_imp
+#endif // LSH
 #endif // lsh_string_h

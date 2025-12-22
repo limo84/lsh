@@ -1,3 +1,4 @@
 #!/bin/sh
 
-gcc tests/main.c && ./a.out
+gcc tests/tests.c -o tests/tests
+tests/tests
