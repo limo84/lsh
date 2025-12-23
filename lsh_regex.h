@@ -12,7 +12,7 @@ typedef uint64_t u64;
 
 bool regex_match(char *regex, char *string);
 
-#ifdef lsh_regex_imp
+#ifdef LSH
 
 // FROM START (FOR NOW)
 bool regex_match(char *regex, char *string) {

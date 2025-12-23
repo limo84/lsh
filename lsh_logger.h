@@ -7,32 +7,25 @@
 #include <stdarg.h>
 
 FILE *file = NULL;
-static char *filename = NULL;
 
 void logger_set_filename(const char *file_name);
 void logger_log(const char *format, ...);
 
-#ifdef lsh_logger_imp
+#ifdef LSH
 
-void logger_set_filename(const char *file_name) {
-  if (filename)
-    free(filename);
-  filename = malloc(1024);
-  strcpy(filename, file_name);
+void logger_open_logfile(const char *file_name) {
   file = fopen(file_name, "w");
   if (!file)
     exit(1);
-  printf("%s\n", filename);
+  printf("%s\n", file_name);
 }
 
-// variadic ...
 void logger_log(const char *format, ...) {
   va_list args;
   va_start(args, format);
     vfprintf(file, format, args);
   va_end(args);
 }
-
 
 #endif
 #endif
