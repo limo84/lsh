@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-FILE *file = NULL;
+static FILE *file = NULL;
 
-void logger_set_filename(const char *file_name);
+void logger_open_logfile(const char *file_name);
 void logger_log(const char *format, ...);
 
 #ifdef LSH
