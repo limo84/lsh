@@ -13,18 +13,18 @@ int main() {
   printf("__________________  ARRAY  __________________________________________________\n");
   printf("_____________________________________________________________________________\n");
   
-  Array *strings = array_init(12, 1);
+  Array *strings = Array_Init(12, 1);
   
   int looplen = 3;
 
   // FILL ARRAY
   for (int i = 0; i < looplen; i++) {
-    array_add(strings, 1, test_buffer[i]);
+    Array_Add(strings, test_buffer[i]);
   }
 
   // PRINT ARRAY
   for (int i = 0; i < looplen; i++) {
-    char *test = (char*) array_get(strings, i);
+    char *test = (char*) Array_Get(strings, i);
     printf("Element %d: %s\n", i, test);
   }
 
