@@ -16,7 +16,7 @@ void Array_Add(Array *a, void *data);
 
 void* Array_Get(Array *a, u32 idx);
 
-
+u32 Array_Length(Array *a);
 // -----------------------------------------------------------
 
 #ifdef LSH
@@ -56,6 +56,9 @@ void* Array_Get(Array *a, u32 idx) {
   return a->data + idx * a->el_size;
 }
 
+u32 Array_Length(Array *a) {
+  return a->length;
+}
 // void array_free(Array **a) {
 //   free(*a->data);
 //   a.data = NULL;
