@@ -45,6 +45,12 @@ Array *Array_Init(u16 el_size, u32 inc) {
 //   a.data = NULL;
 // }
 
+//void array_free(Array a) {
+// free(a.data);
+//  a.data = NULL;
+//}
+
+
 /*void array_fill(Array *a, u32 length, void *data) {
   a->data = malloc(a->cap * a->el_size); 
   a->length = length;
