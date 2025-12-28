@@ -5,6 +5,15 @@
 
 #define TESTSIZE 5
 
+typedef struct {
+  int id;
+  char name[10];
+} Person;
+
+void printPerson(Person* p) {
+  printf("Id: %d, Name: %s\n", p->id, p->name); 
+}
+
 const int buffer_size = 12;
 char test_buffer[TESTSIZE][12] = {"huhu1", "asdfghj", "m12345", "Lukas", "ACHTUNG!"};
 
@@ -28,5 +37,14 @@ int main() {
     printf("Element %d: %s\n", i, test);
   }
 
+  Person p1 = {1, "Hans"};
+  Person p2 = {5, "Fredo"};
+
+  Array *people = Array_Init(sizeof(Person), 1);
+  Array_Add(people, &p1);
+  Array_Add(people, &p2);
+  printPerson((Person*) Array_Get(people, 0));
+  printPerson((Person*) Array_Get(people, 1));
+  
   return 0;
 }
