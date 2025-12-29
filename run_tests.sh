@@ -2,4 +2,6 @@
 
 #gcc -g tests/tests.c -o tests/tests.out && tests/tests.out
 
-gcc -g tests/array_test.c -o tests/tests.out && tests/tests.out
+#gcc -g tests/array_test.c -o tests/tests.out && tests/tests.out
+
+gcc -g tests/ncurses_test.c -lncurses -o tests/tests.out && tests/tests.out
